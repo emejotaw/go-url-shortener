@@ -1,10 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/emejotaw/go-url-shortener/service"
+)
 
 func main() {
 
 	url := "https://google.com"
 
-	fmt.Println(url)
+	urlService := service.UrlService{}
+	shortURL := urlService.Generate(url)
+
+	fmt.Println(shortURL)
 }
