@@ -1,17 +1,10 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/emejotaw/go-url-shortener/service"
+	"github.com/emejotaw/go-url-shortener/routes"
 )
 
 func main() {
 
-	url := "https://google.com"
-
-	urlService := service.UrlService{}
-	shortURL := urlService.Generate(url)
-
-	fmt.Println(shortURL)
+	routes.Start()
 }

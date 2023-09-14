@@ -1,8 +1,27 @@
 package service
 
-import "crypto/rand"
+import (
+	"crypto/rand"
+	"errors"
+)
 
 type UrlService struct {
+	shortUrls map[string]string
+}
+
+func NewUrlService() *UrlService {
+	return &UrlService{
+		shortUrls: make(map[string]string),
+	}
+}
+
+func (u *UrlService) Get(dns string) (string, error) {
+
+	if url, ok := u.shortUrls[dns]; ok {
+		return url, nil
+	}
+
+	return "", errors.New("url not found")
 }
 
 func (u *UrlService) Generate(url string) string {
@@ -15,5 +34,8 @@ func (u *UrlService) Generate(url string) string {
 		bytes[index] = alphanum[data%byte(len(alphanum))]
 	}
 
+	shortName := string(bytes)
+
+	u.shortUrls[shortName] = url
 	return string(bytes)
 }
