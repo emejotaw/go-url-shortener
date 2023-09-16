@@ -31,5 +31,5 @@ func (u *urlShortenerController) Redirect(c *gin.Context) {
 		})
 		return
 	}
-	http.RedirectHandler(url, http.StatusMovedPermanently)
+	http.Redirect(c.Writer, c.Request, url, http.StatusSeeOther)
 }

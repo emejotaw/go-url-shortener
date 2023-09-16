@@ -11,7 +11,7 @@ func Start() {
 	server := gin.Default()
 
 	urlService := service.NewUrlService()
-	urlService.Generate("www.google.com")
+	urlService.Generate("https://www.google.com")
 	controller := api.NewUrlShortenerController(urlService)
 
 	server.GET("/short/:name", controller.Redirect)
