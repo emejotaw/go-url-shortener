@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 
+	"github.com/emejotaw/go-url-shortener/entity"
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 )
@@ -19,4 +20,11 @@ func GetConnection() *gorm.DB {
 	}
 
 	return db
+}
+
+func AutoMigrate() {
+
+	db := GetConnection()
+
+	db.AutoMigrate(&entity.URL{})
 }
