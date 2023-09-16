@@ -3,6 +3,7 @@ package service
 import (
 	"crypto/rand"
 	"errors"
+	"log"
 )
 
 type UrlService struct {
@@ -35,6 +36,7 @@ func (u *UrlService) Generate(url string) string {
 	}
 
 	shortName := string(bytes)
+	log.Println("Generated name: ", shortName)
 
 	u.shortUrls[shortName] = url
 	return string(bytes)
